@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from mainapp.views import get_teachers, get_teacher, show_slots
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('teachers/', get_teachers, name="get_teachers"),
+    path('teacher/<int:pk>', get_teacher, name="get_teacher"),
+    path('slots/', show_slots, name="show_slots"),
 ]
