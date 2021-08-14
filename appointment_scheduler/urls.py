@@ -24,7 +24,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('teachers/', get_teachers, name="get_teachers"),
     path('teacher/<int:pk>', get_teacher, name="get_teacher"),
-    path('slots/', show_slots, name="show_slots"),
-    path('book/', book_slot, name="book_slot"),
-    path('auth/', obtain_auth_token, name="auth"),
+    path('api/teacher/show-availability', show_slots, name="show_slots"),
+    path('api/teacher/book', book_slot, name="book_slot"),
+    path('api/auth', obtain_auth_token, name="auth"),
 ]
