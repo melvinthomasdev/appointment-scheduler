@@ -23,7 +23,10 @@ def get_teacher(request, pk):
     serializer = TeacherSerializer(teacher)
     return JsonResponse(serializer.data, safe=False)
 
+def home(request):
+    return JsonResponse({"message": "This is the API root"})
 
+@api_view(['GET'])
 def show_slots(request):
     if request.method == "GET":
         result = {}
