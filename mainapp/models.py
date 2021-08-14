@@ -6,7 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-# Create your models here.
 time_choices = (
     ("10:00", "10:00"),
     ("10:30", "10:30"),
@@ -24,11 +23,9 @@ time_choices = (
     ("16:30", "16:30")
 )
 
-
 class Teacher(models.Model):
     name = models.CharField(max_length=35, null=False)
-    # available_slots = all_slots
-    
+
     def __str__(self):
         return self.name
 
@@ -43,21 +40,14 @@ class Timeslot(models.Model):
 
 class Appointment(models.Model):
     teacher = models.ForeignKey(Teacher, related_name='teachers', on_delete=models.CASCADE)
-    # time = models.CharField(max_length=5, null=False, choices=time_choices, unique=True)
 
-    time = models.ForeignKey('Timeslot', related_name='appointment', on_delete=models.CASCADE)
-    # student = models.ForeignKey(User, related_name='appointment', on_delete=models.CASCADE)    
+    time = models.ForeignKey('Timeslot', related_name='appointment', on_delete=models.CASCADE)    
 
     def __str__(self):
-        # res = ""
-        # for i in self.teachers.all():
-        #     res+=i.name+ " "
-        # return res
         return self.teacher.name
-    
-    # def number_of_teachers(self):
-    #     return len(self.teachers.all())
 
+
+# Creating an auth token when a user is created
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:

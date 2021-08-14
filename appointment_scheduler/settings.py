@@ -31,7 +31,7 @@ SECRET_KEY = '_m6$qsucsofgb4_^d6_bg=afvlfk)fbt8j#^pl=p3g6e-jl2r2'
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["appointment-scheduler-totto.herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -90,6 +90,7 @@ DATABASES = {
     }
 }
 
+# Production DB Settings
 db_from_env=dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
@@ -130,13 +131,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
+
 STATIC_URL = "/staticfiles/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# STATICFILES_DIRS = [
-# os.path.join(BASE_DIR, 'static'),
-# ]
 
+# DRF Settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
