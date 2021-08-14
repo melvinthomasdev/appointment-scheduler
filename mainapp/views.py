@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -25,7 +26,14 @@ def get_teacher(request, pk):
 
 # Home route
 def home(request):
-    return JsonResponse({"message": "This is the API root"})
+    return JsonResponse(
+        {
+            "message": "This is the API root",
+            "Show slot availability": reverse("show_slots"),
+            "Book Slot": reverse("book_slot"),
+            "Get auth token": reverse("auth")
+        }
+    )
 
 # Returns Slot availability.
 @api_view(['GET'])
