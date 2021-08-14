@@ -3,19 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 time_choices = (
-    ("10.00", "10.00"),
+    ("10:00", "10:00"),
     ("10:30", "10:30"),
-    ("11.00", "11.00"),
+    ("11:00", "11:00"),
     ("11:30", "11:30"),
-    ("12.00", "12.00"),
+    ("12:00", "12:00"),
     ("12:30", "12:30"),
-    ("13.00", "13.00"),
+    ("13:00", "13:00"),
     ("13:30", "13:30"),
-    ("14.00", "14.00"),
+    ("14:00", "14:00"),
     ("14:30", "14:30"),
-    ("15.00", "15.00"),
+    ("15:00", "15:00"),
     ("15:30", "15:30"),
-    ("16.00", "16.00"),
+    ("16:00", "16:00"),
     ("16:30", "16:30")
 )
 
@@ -37,9 +37,9 @@ class Timeslot(models.Model):
         return self.time
 
 class Appointment(models.Model):
-    teachers = models.ManyToManyField(Teacher, related_name='appoinment')
+    teachers = models.ManyToManyField(Teacher, related_name='teachers')
     time = models.ForeignKey('Timeslot', related_name='appointment', on_delete=models.CASCADE)
-    student = models.ForeignKey(User, related_name='appointment', on_delete=models.CASCADE)    
+    # student = models.ForeignKey(User, related_name='appointment', on_delete=models.CASCADE)    
 
     def __str__(self):
         res = ""
