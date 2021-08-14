@@ -37,12 +37,12 @@ def book_slot(request):
         try:
             timeslot = Timeslot.objects.get(time=time)
             if slot_available(timeslot):
-                teachers = get_available_teachers(timeslot)
-                appointment = Appointment(time=timeslot)
+                teacher = get_available_teachers(timeslot)
+                appointment = Appointment(time=timeslot, teacher=teacher)
                 appointment.save()
-                for teacher in teachers:
-                    appointment.teachers.add(teacher)
-                serializer = AppointmentSerializer(appointment)
+                # for teacher in teachers:
+                #     appointment.teachers.add(teacher)
+                # serializer = AppointmentSerializer(appointment)
                 result["message"] = "Success"
                 return JsonResponse(result,  safe=False)
             else:

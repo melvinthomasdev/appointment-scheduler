@@ -37,15 +37,18 @@ class Timeslot(models.Model):
         return self.time
 
 class Appointment(models.Model):
-    teachers = models.ManyToManyField(Teacher, related_name='teachers')
+    teacher = models.ForeignKey(Teacher, related_name='teachers', on_delete=models.CASCADE)
+    # time = models.CharField(max_length=5, null=False, choices=time_choices, unique=True)
+
     time = models.ForeignKey('Timeslot', related_name='appointment', on_delete=models.CASCADE)
     # student = models.ForeignKey(User, related_name='appointment', on_delete=models.CASCADE)    
 
     def __str__(self):
-        res = ""
-        for i in self.teachers.all():
-            res+=i.name+ " "
-        return res
+        # res = ""
+        # for i in self.teachers.all():
+        #     res+=i.name+ " "
+        # return res
+        return self.teacher.name
     
-    def number_of_teachers(self):
-        return len(self.teachers.all())
+    # def number_of_teachers(self):
+    #     return len(self.teachers.all())
