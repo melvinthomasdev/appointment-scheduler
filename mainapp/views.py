@@ -31,7 +31,8 @@ def home(request):
             "message": "This is the API root",
             "Show slot availability": reverse("show_slots"),
             "Book Slot": reverse("book_slot"),
-            "Get auth token": reverse("auth")
+            "Get auth token": reverse("auth"),
+            "List of all teachers": reverse("get_teachers")
         }
     )
 
